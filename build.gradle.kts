@@ -29,6 +29,8 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 	implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 	implementation("org.springframework.boot:spring-boot-starter-web")
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -37,6 +39,7 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("org.springframework.security:spring-security-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }

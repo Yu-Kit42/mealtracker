@@ -2,7 +2,7 @@ spring:
   application:
     name: sungil-mealtracker
   datasource:
-    url: jdbc:h2:file:./data/db;AUTO_SERVER=TRUE
+    url: jdbc:h2:file:./data/db;AUTO_SERVER=TRUE;
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -10,6 +10,9 @@ spring:
     console:
       enabled: true
       path: /h2-console
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
 
 server:
   port: 8042

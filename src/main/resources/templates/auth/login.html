@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성일정보고 급식 체크 로그인</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Nanum Gothic', sans-serif;
+        background: linear-gradient(to bottom right, #004080, #005599);
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .login-box {
+        background-color: rgba(255, 255, 255, 0.95);
+        color: #000;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .logo {
+        width: 200px;
+        margin-bottom: 20px;
+      }
+
+      .login-box h2 {
+        margin-bottom: 20px;
+        color: #004080;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        margin: 10px 0 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: border 0.3s ease, box-shadow 0.3s ease; /* ✅ 부드러운 전환 추가 */
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border: 1px solid #004080;
+        box-shadow: 0 0 5px rgba(0, 51, 102, 0.4); /* ✅ 약간의 그림자 강조 */
+        outline: none; /* 기본 파란 외곽선 제거 */
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #004b7d;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background-color: #00325a;
+      }
+
+      footer {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #ccc;
+      }
+    </style>
+</head>
+<body>
+<div class="login-box">
+    <img th:src="@{/images/sungil-logo-full.png}" alt="성일정보고 로고" class="logo">
+    <h2>급식 체크 로그인</h2>
+    <form th:action="@{/login}" method="post">
+        <label>
+            <input type="text" name="username" placeholder="이름을 입력해 주세요">
+        </label>
+        <label>
+            <input type="password" name="password">
+        </label>
+        <button type="submit">로그인</button>
+    </form>
+</div>
+<footer>
+    &copy; 2025 성일정보고 급식관리 시스템
+</footer>
+</body>
+</html>
