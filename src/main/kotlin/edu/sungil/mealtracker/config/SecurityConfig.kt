@@ -30,7 +30,7 @@ class SecurityConfig {
             .formLogin { form ->
                 form
                     .loginPage("/login")
-                    .defaultSuccessUrl("/dashboard")
+                    .defaultSuccessUrl("/meal-dashboard")
                     .permitAll()
             }
             .logout { logout ->

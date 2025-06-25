@@ -7,96 +7,272 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap">
     <style>
+      /* 기본 스타일 */
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         margin: 0;
         font-family: 'Nanum Gothic', sans-serif;
         background: linear-gradient(to bottom right, #004080, #005599);
         color: #fff;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+      }
+
+      /* 로그인 컨테이너 */
+      .login-container {
+        width: 100%;
+        max-width: 500px;
+        padding: 2rem;
       }
 
       .login-box {
         background-color: rgba(255, 255, 255, 0.95);
         color: #000;
-        padding: 40px;
-        border-radius: 16px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        padding: 3rem 2.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.3);
         text-align: center;
-        width: 100%;
-        max-width: 400px;
       }
 
+      /* 로고 스타일 */
       .logo {
-        width: 200px;
-        margin-bottom: 20px;
+        width: 16.5rem;
+        height: auto;
+        margin-bottom: 1.5rem;
       }
 
+      /* 제목 스타일 */
       .login-box h2 {
-        margin-bottom: 20px;
+        margin: 0 0 2rem 0;
         color: #004080;
+        font-size: 1.5rem;
+        font-weight: 700;
       }
 
-      input[type="text"],
-      input[type="password"] {
+      /* 에러 메시지 스타일 */
+      .error-message {
+        background-color: #fee;
+        color: #c33;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #fcc;
+        font-size: 0.875rem;
+      }
+
+      /* 폼 스타일 */
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+
+      .form-group label {
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 0.5rem;
+      }
+
+      /* 입력 필드 스타일 */
+      .form-input {
         width: 100%;
-        padding: 12px;
-        margin: 10px 0 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        font-size: 16px;
-        transition: border 0.3s ease, box-shadow 0.3s ease; /* ✅ 부드러운 전환 추가 */
+        padding: 0.75rem;
+        border: 2px solid #e1e5e9;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background-color: #fff;
       }
 
-      input[type="text"]:focus,
-      input[type="password"]:focus {
-        border: 1px solid #004080;
-        box-shadow: 0 0 5px rgba(0, 51, 102, 0.4); /* ✅ 약간의 그림자 강조 */
-        outline: none; /* 기본 파란 외곽선 제거 */
+      .form-input:focus {
+        border-color: #004080;
+        box-shadow: 0 0 0 3px rgba(0, 64, 128, 0.1);
+        outline: none;
       }
 
-      button {
+      .form-input.error {
+        border-color: #c33;
+      }
+
+      /* 버튼 스타일 */
+      .btn {
         width: 100%;
-        padding: 12px;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary {
         background-color: #004b7d;
         color: white;
-        border: none;
-        border-radius: 8px;
-        font-size: 16px;
-        cursor: pointer;
-        transition: background 0.3s;
       }
 
-      button:hover {
+      .btn-primary:hover {
         background-color: #00325a;
+        transform: translateY(-1px);
+        box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
       }
 
+      /* 회원가입 링크 */
+      .signup-section {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e1e5e9;
+      }
+
+      .signup-text {
+        color: #666;
+        margin-bottom: 0.75rem;
+      }
+
+      .signup-link {
+        color: #004080;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: color 0.3s ease;
+      }
+
+      .signup-link:hover {
+        color: #00325a;
+        text-decoration: underline;
+      }
+
+      /* 푸터 스타일 */
       footer {
-        margin-top: 20px;
-        font-size: 14px;
-        color: #ccc;
+        margin-top: 2rem;
+        font-size: 0.875rem;
+        color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+      }
+
+      /* 반응형 디자인 */
+      @media (max-width: 480px) {
+        .login-container {
+          padding: 1rem;
+        }
+
+        .login-box {
+          padding: 2rem 1.5rem;
+        }
+
+        .logo {
+          width: 10rem;
+        }
       }
     </style>
 </head>
+
 <body>
-<div class="login-box">
-    <img th:src="@{/images/sungil-logo-full.png}" alt="성일정보고 로고" class="logo">
-    <h2>급식 체크 로그인</h2>
-    <form th:action="@{/login}" method="post">
-        <label>
-            <input type="text" name="username" placeholder="이름을 입력해 주세요">
-        </label>
-        <label>
-            <input type="password" name="password">
-        </label>
-        <button type="submit">로그인</button>
-    </form>
+<div class="login-container">
+    <div class="login-box">
+        <img th:src="@{/images/sungil-logo-full.png}" alt="성일정보고 로고" class="logo">
+        <h2>급식 체크 로그인</h2>
+
+        <form th:action="@{/login}" method="post" class="login-form">
+
+            <div class="form-group">
+                <label for="username">이름</label>
+                <input type="text"
+                       id="username"
+                       name="username"
+                       class="form-input"
+                       placeholder="이름을 입력해 주세요"
+                       required
+                       autocomplete="username">
+            </div>
+            <div id="usernameFeedback" class="invalid-feedback"></div>
+
+            <div class="form-group">
+                <label for="password">비밀번호</label>
+                <input type="password"
+                       id="password"
+                       name="password"
+                       class="form-input"
+                       placeholder="비밀번호를 입력해 주세요"
+                       required
+                       autocomplete="current-password">
+            </div>
+            <div id="passwordFeedback" class="invalid-feedback"></div>
+
+            <button type="submit" class="btn btn-primary">로그인</button>
+        </form>
+
+        <div class="signup-section">
+            <p class="signup-text">계정이 없으신가요?</p>
+            <a th:href="@{/signup}" class="signup-link">계정 등록 하기</a>
+        </div>
+    </div>
 </div>
+
 <footer>
     &copy; 2025 성일정보고 급식관리 시스템
 </footer>
 </body>
+
+<script>
+  /**
+   * @param inputId        — 검사할 <input> 요소의 id
+   * @param feedbackId     — 에러 메시지를 쓸 <div> 요소의 id
+   * @param validateFn     — 유효성 검사 함수: true(통과) / false(실패)
+   * @param errorMessage   — 실패 시 보여줄 메시지
+   */
+  function setupValidationOnBlur(inputId, feedbackId, validateFn, errorMessage) {
+    const input = document.getElementById(inputId);
+    const feedback = document.getElementById(feedbackId);
+
+    // 포커스를 잃을 때만 검증
+    input.addEventListener('blur', () => {
+      const val = input.value.trim();
+      if (val !== '' && !validateFn(val)) {
+        input.classList.add('is-invalid');
+        input.classList.remove('is-valid');
+        feedback.textContent = errorMessage;
+      } else {
+        input.classList.remove('is-invalid');
+        input.classList.add('is-valid');
+        feedback.textContent = '';
+      }
+    });
+
+    // 사용자가 다시 수정 시작할 때, 이전 오류 표시 제거
+    input.addEventListener('input', () => {
+      input.classList.remove('is-invalid', 'is-valid');
+      feedback.textContent = '';
+    });
+  }
+
+  // 사용자명: 포커스 벗어날 때 최소 2자 검사
+  setupValidationOnBlur(
+    'username',
+    'usernameFeedback',
+    val => val.length >= 2,
+    '최소 2자 이상 입력해주세요'
+  );
+
+  // 비밀번호: 포커스 벗어날 때 8자+조합 검사
+  setupValidationOnBlur(
+    'password',
+    'passwordFeedback',
+    val => /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(val),
+    '비밀번호는 최소 8자, 문자+숫자 조합이어야 합니다'
+  );
+</script>
+
 </html>
